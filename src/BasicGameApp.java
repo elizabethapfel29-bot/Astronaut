@@ -6,6 +6,7 @@
 
 //K. Chun 8/2018
 
+
 //*******************************************************************************
 //Import Section
 //Add Java libraries needed for the game
@@ -42,7 +43,11 @@ public class BasicGameApp implements Runnable {
 
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
-	private Astronaut astro;
+	public Astronaut astro;
+	public Astronaut astro2;
+	public Astronaut astro3;
+
+	public int RandomNumber;
 
 
    // Main method definition
@@ -65,6 +70,15 @@ public class BasicGameApp implements Runnable {
       //create (construct) the objects needed for the game and load up 
 		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
 		astro = new Astronaut(10,100);
+		astro2 = new Astronaut(300,10);
+		astro3 = new Astronaut(200,255);
+		RandomNumber=(int)(Math.random()*10)+1;
+		System.out.println(astro.dx);
+		astro.dx=10;
+		astro2.dy=RandomNumber;
+
+
+
 
 
 	}// BasicGameApp()
@@ -93,6 +107,11 @@ public class BasicGameApp implements Runnable {
 	{
       //calls the move( ) code in the objects
 		astro.move();
+		astro2.move();
+		astro3.move();
+
+		//todo: give astro2 a random number between [1, 10]
+
 
 	}
 	
@@ -145,6 +164,8 @@ public class BasicGameApp implements Runnable {
 
       //draw the image of the astronaut
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
+		g.drawImage(astroPic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
+		g.drawImage(astroPic, astro3.xpos, astro3.ypos, astro3.width, astro3.height, null);
         //end coding here
 		g.dispose();
 
