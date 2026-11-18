@@ -40,6 +40,7 @@ public class BasicGameApp implements Runnable {
    
 	public BufferStrategy bufferStrategy;
 	public Image astroPic;
+	public Image BackgroundPic;
 
    //Declare the objects used in the program
    //These are things that are made up of more than one variable type
@@ -65,14 +66,17 @@ public class BasicGameApp implements Runnable {
 	public BasicGameApp() {
       
       setUpGraphics();
-       
+
+
       //variable and objects
-      //create (construct) the objects needed for the game and load up 
-		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
-		astro = new Astronaut(10,100);
-		astro2 = new Astronaut(300,10);
-		astro3 = new Astronaut(200,255);
+      //create (construct) the objects needed for the game and load up
 		RandomNumber=(int)(Math.random()*10)+1;
+		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png");//load the picture
+		BackgroundPic = Toolkit.getDefaultToolkit().getImage("Background");
+		astro = new Astronaut(10,100);
+		astro2 = new Astronaut((int)(Math.random()*900),(int)(Math.random()*600));
+		astro3 = new Astronaut(200,255);
+
 		System.out.println(astro.dx);
 		astro.dx=10;
 		astro2.dy=RandomNumber;
@@ -83,7 +87,7 @@ public class BasicGameApp implements Runnable {
 
 	}// BasicGameApp()
 
-   
+    
 //*******************************************************************************
 //User Method Section
 //
@@ -106,6 +110,7 @@ public class BasicGameApp implements Runnable {
 	public void moveThings()
 	{
       //calls the move( ) code in the objects
+		crashing();
 		astro.move();
 		astro2.move();
 		astro3.move();
@@ -114,6 +119,20 @@ public class BasicGameApp implements Runnable {
 
 
 	}
+
+	public void crashing(){
+		if(astro.hitbox.intersects(astro2.hitbox)){
+			System.out.println("crash");
+			astro.dx=-astro.dx;
+			astro2.dx=-astro2.dx;
+
+
+		}
+
+
+	}
+
+
 	
    //Pauses or sleeps the computer for the amount specified in milliseconds
    public void pause(int time ){
@@ -163,6 +182,7 @@ public class BasicGameApp implements Runnable {
 		//start coding here
 
       //draw the image of the astronaut
+		g.drawImage(BackgroundPic, 0, 0, WIDTH, HEIGHT, null);
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
 		g.drawImage(astroPic, astro2.xpos, astro2.ypos, astro2.width, astro2.height, null);
 		g.drawImage(astroPic, astro3.xpos, astro3.ypos, astro3.width, astro3.height, null);
