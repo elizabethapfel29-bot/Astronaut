@@ -125,6 +125,14 @@ public class BasicGameApp implements Runnable {
 			System.out.println("crash");
 			astro.dx=-astro.dx;
 			astro2.dx=-astro2.dx;
+			astro.dy=-astro.dy;
+			astro2.dy=-astro2.dy;
+			astro.height= astro.height + 10;
+			astro.width= astro.width + 10;
+			astro2.height= astro2.height + 10;
+			astro2.width= astro2.width + 10;
+
+
 
 
 		}
