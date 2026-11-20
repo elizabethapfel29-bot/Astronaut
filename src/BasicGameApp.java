@@ -121,19 +121,25 @@ public class BasicGameApp implements Runnable {
 	}
 
 	public void crashing(){
-		if(astro.hitbox.intersects(astro2.hitbox)){
+		if(astro.hitbox.intersects(astro2.hitbox) && astro.iscrashing== false){//when they are intersecting
 			System.out.println("crash");
+			System.out.println(astro.iscrashing);
 			astro.dx=-astro.dx;
 			astro2.dx=-astro2.dx;
 			astro.dy=-astro.dy;
 			astro2.dy=-astro2.dy;
-			astro.height= astro.height + 10;
-			astro.width= astro.width + 10;
-			astro2.height= astro2.height + 10;
-			astro2.width= astro2.width + 10;
+			astro.height= astro.height + 20;
+			astro.width= astro.width + 20;
+			astro2.height= astro2.height + 20;
+			astro2.width= astro2.width + 20;
 
 
+			astro.iscrashing=true;
 
+		}
+
+		if (!astro.hitbox.intersects(astro2.hitbox)){//when they are not intersecting
+			astro.iscrashing= false;
 
 		}
 
